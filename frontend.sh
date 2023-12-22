@@ -1,7 +1,7 @@
 echo -e " \e[34m installing nginx \e[0m"
 dnf install nginx -y
 
-echo -e " \e[34m copy expense config file \e[0m"
+echo -e " \e[34m copy expense config files \e[0m"
 cp expense.conf /etc/nginx/default.d/expense.conf
 
 echo -e " \e[34m clean old nginx content\e[0m"
