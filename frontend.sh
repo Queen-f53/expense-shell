@@ -6,7 +6,7 @@ dnf install nginx -y &>>$log_file
 echo $?
 
 echo -e "${color} copy expense config file \e[0m"
-cp expense.conf /etc/nginx/default.d/expense.conf
+cp expense.conf /etc/nginx/default.d/expense.conf &>>$log_file
 echo $?
 
 echo -e "${color} clean old nginx content\e[0m"
