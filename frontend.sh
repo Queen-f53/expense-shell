@@ -15,6 +15,7 @@ echo $?
 
 echo -e "${color} download frontend application code \e[0m"
 curl -o /tmp/frontend.zip https://expense-artifacts.s3.amazonaws.com/frontend.zip &>>$log_file
+echo $?
 
 echo -e "${color} extract downloaded application content\e[0m"
 cd /usr/share/nginx/html &>>$log_file
