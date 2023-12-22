@@ -1,20 +1,22 @@
-echo -e " \e[32m installing nginx \e[0m"
-dnf install nginx -y &>>/tmp/expense.log
+log_file=/tmp/expense.log
+color="\e[33m"
 
-echo -e " \e[32m copy expense config files \e[0m"
-cp expense.conf /etc/nginx/default.d/expense.conf &>>/tmp/expense.log
+echo -e "${color} installing nginx \e[0m"
+dnf install nginx -y &>>$log_file
 
-echo -e " \e[32m clean old nginx content\e[0m"
-rm -rf /usr/share/nginx/html/* &>>/tmp/expense.log
+echo -e "${color} copy expense config files \e[0m"
+cp expense.conf /etc/nginx/default.d/expense.conf &>>$log_file
+echo -e "${color} clean old nginx content\e[0m"
+rm -rf /usr/share/nginx/html/* &>>$log_file
 
-echo -e " \e[32m download frontend application code \e[0m"
-curl -o /tmp/frontend.zip https://expense-artifacts.s3.amazonaws.com/frontend.zip &>>/tmp/expense.log
+echo -e "${color} download frontend application code \e[0m"
+curl -o /tmp/frontend.zip https://expense-artifacts.s3.amazonaws.com/frontend.zip &>>$log_file
 
-echo -e " \e[32m extract downloaded application content\e[0m"
-cd /usr/share/nginx/html &>>/tmp/expense.log
-unzip /tmp/frontend.zip &>>/tmp/expense.log
+echo -e "${color} extract downloaded application content\e[0m"
+cd /usr/share/nginx/html &>>$log_file
+unzip /tmp/frontend.zip &>>$log_file
 
 
-echo -e " \e[32m starting nginx \e[0m"
-systemctl enable nginx &>>/tmp/expense.log
-systemctl restart nginx &>>/tmp/expense.log
+echo -e "${color} starting nginx \e[0m"
+systemctl enable nginx &>>$log_file
+systemctl restart nginx &>>$log_file
