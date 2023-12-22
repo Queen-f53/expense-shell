@@ -3,7 +3,13 @@ color="\e[33m"
 
 echo -e "${color} installing nginx \e[0m"
 dnf install nginx -y &>>$log_file
-echo $?
+if [ $? -eq 0 ]; then
+  echo -e "\e[32m SUCCESS \e[0m"
+else
+  echo -e "\e[31m FAILURE \e[0m"
+fi
+
+
 
 echo -e "${color} copy expense config file \e[0m"
 cp expense.conf /etc/nginx/default.d/expense.conf &>>$log_file
